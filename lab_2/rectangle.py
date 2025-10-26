@@ -5,15 +5,15 @@ class Rectangle(Shape):
     # The constructor of the Rectangle class initializes the recangle object
     def __init__(self, x: float = 0, y: float = 0, width: float = 1, height: float = 1):
         super().__init__(x, y)  # we reuse the attributes from the Shape class
-        self._width = width
-        self._height = height
+        self.width = width
+        self.height = height
 
     @property
     def width(self):
-        pass
+        return self._width
 
     @width.setter
-    def width(self):
+    def width(self, value):
         pass
 
     @property
@@ -21,7 +21,7 @@ class Rectangle(Shape):
         pass
 
     @height.setter
-    def height(self):
+    def height(self, value):
         pass
 
     @property
@@ -31,3 +31,6 @@ class Rectangle(Shape):
     @property
     def perimeter(self):
         return 2 * (self._width + self._height)
+
+
+rectangle = Rectangle(width=0, height=0)

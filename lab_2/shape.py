@@ -6,8 +6,8 @@ class Shape(ABC):  # The parent class Shape
     the other shapes will use"""
 
     def __init__(self, x: float = 0, y: float = 0):
-        self._x = x
-        self._y = y
+        self.x = x
+        self.y = y
 
     @property
     def x(self):
@@ -15,10 +15,10 @@ class Shape(ABC):  # The parent class Shape
 
     @x.setter
     def x(self, value):
-        if value < 0 or value > 100:
-            raise ValueError("Negative numbers or numbers over hundred are not allowed")
+        if not isinstance(value, (int, float)):
+            raise TypeError
         else:
-            self._value = value
+            self._x = value
 
     @property
     def y(self):
@@ -26,8 +26,10 @@ class Shape(ABC):  # The parent class Shape
 
     @y.setter
     def y(self, value):
-        if value < 0 or value > 100:
-            raise ValueError("Negative numbers or numbers over hundred are not allowed")
+        if not isinstance(value, (int, float)):
+            raise TypeError
+        else:
+            self._y = value
 
     @property
     @abstractmethod

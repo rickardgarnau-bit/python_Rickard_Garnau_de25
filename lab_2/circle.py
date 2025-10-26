@@ -2,16 +2,16 @@ from shape import Shape
 
 
 class Circle(Shape):
-    def __init__(self, radius):
-        super().__init__(x, y)
-        self._radius = radius
+    def __init__(self, x=0, y=0, radius=1):
+        super().__init__(x, y)  # we reuse the attributes from the Shape class
+        self.radius = radius
 
     @property
     def radius(self):
-        pass
+        return self._radius
 
     @radius.setter
-    def radius(self):
+    def radius(self, value):
         pass
 
     def area(self):
