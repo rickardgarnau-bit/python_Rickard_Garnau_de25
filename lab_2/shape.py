@@ -8,10 +8,15 @@ class Shape(ABC):
 
     @property
     @abstractmethod
-    def area():
+    def area(self):
         pass
 
     @property
     @abstractmethod
-    def perimeter():
+    def perimeter(self):
+        pass
+
+    @property
+    @abstractmethod
+    def draw(self):
         pass
