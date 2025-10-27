@@ -10,11 +10,13 @@ class Rectangle(Shape):
 
     @property
     def width(self):
-        return self._width
+        return self.width
 
     @width.setter
     def width(self, value):
-        pass
+        if not isinstance(value, (int, float)):
+            raise TypeError("The width has to be number")
+        self._value = self._width
 
     @property
     def height(self):
@@ -22,7 +24,9 @@ class Rectangle(Shape):
 
     @height.setter
     def height(self, value):
-        pass
+         if not isinstance(value, (int, float)):
+            raise TypeError("The height has to be number")
+        self._value = self._height
 
     @property
     def area(self):
@@ -31,6 +35,9 @@ class Rectangle(Shape):
     @property
     def perimeter(self):
         return 2 * (self._width + self._height)
+    
+    def __eq__(self, other):
 
 
-rectangle = Rectangle(width=0, height=0)
+
+rectangle = Rectangle(width=5, height=5)

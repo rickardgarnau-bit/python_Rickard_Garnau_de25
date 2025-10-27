@@ -2,8 +2,6 @@ from abc import ABC, abstractmethod
 
 
 class Shape(ABC):  # The parent class Shape
-    """The constructor of the Shape class initializes and stores the attributes
-    the other shapes will use"""
 
     def __init__(self, x: float = 0, y: float = 0):
         self.x = x
