@@ -14,7 +14,7 @@ class Shape(ABC):  # The parent class Shape
     @x.setter  # setter for x with typecheck
     def x(self, value):
         if not isinstance(value, (int, float)):
-            raise TypeError
+            raise TypeError("'x' must be a number, (int or float)")
         else:
             self._x = value
 
@@ -25,7 +25,7 @@ class Shape(ABC):  # The parent class Shape
     @y.setter  # setter for y with typecheck
     def y(self, value):
         if not isinstance(value, (int, float)):
-            raise TypeError
+            raise TypeError("'y' must be a number, (int or float)")
         else:
             self._y = value
 
@@ -63,10 +63,12 @@ class Shape(ABC):  # The parent class Shape
         return self.x > other.x
 
     # I got help and inspiration for the overloading comparison operators from:
-    # https://www.programiz.com/python-programming/operator-overloading
+    # https://docs.python.org/3/reference/datamodel.html#special-method-names
 
-    def __repr__(self):  # formal representation for reviewing the object
-        pass
+    def __repr__(
+        self,
+    ):  # formal representation for reviewing the object. https://www.geeksforgeeks.org/python/python-program-to-get-the-class-name-of-an-instance/
+        return f"{self.__class__.__name__}, (x={self.x}, y={self.y})"
 
     def __str__(self):  # clean representation for viewing
-        pass
+        return f"Shape at position ({self.x}, {self.y})"

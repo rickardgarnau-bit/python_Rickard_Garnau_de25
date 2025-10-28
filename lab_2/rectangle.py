@@ -42,6 +42,12 @@ class Rectangle(Shape):
     def __str__(self):
         return f"The area of the rectangle is: {self.area}. The perimeter of the rectangle is: {self.perimeter}"
 
+    def find_center(self):
+        # I took inspiration from: https://greenteapress.com/thinkpython/html/thinkpython016.html part 15.4
+        center_x = self.x + self._width / 2.0
+        center_y = self.y + self._height / 2.0
+        return (center_x, center_y)
+
 
 r = Rectangle(width=4, height=6)
 

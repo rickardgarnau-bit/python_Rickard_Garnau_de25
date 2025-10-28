@@ -12,7 +12,9 @@ class Circle(Shape):
 
     @radius.setter
     def radius(self, value):
-        pass
+        if not isinstance(value, (int, float)):
+            raise TypeError("The radius has to be of type(int, float)")
+        self._radius = value
 
     def area(self):
         pass
