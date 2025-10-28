@@ -17,9 +17,9 @@ class Circle(Shape):
         self._radius = value
 
     def area(self):
-        pass
+        return 3.14 * self._radius**2
 
     def perimeter(self):
-        pass
+        return 2 * 3.14 * self._radius
 
     def move(self, dx, dy):

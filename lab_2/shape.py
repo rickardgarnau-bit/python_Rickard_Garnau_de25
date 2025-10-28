@@ -34,6 +34,8 @@ class Shape(ABC):  # The parent class Shape
     def area(self):
         pass
 
+    # @abstractmethod to signal the subclasses that these methods are required else they will get a TypeError
+
     @property
     @abstractmethod
     def perimeter(self):
