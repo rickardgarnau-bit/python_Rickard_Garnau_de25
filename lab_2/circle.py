@@ -19,3 +19,5 @@ class Circle(Shape):
 
     def perimeter(self):
         pass
+
+    def move(self, dx, dy):
