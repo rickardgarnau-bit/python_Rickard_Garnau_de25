@@ -1,29 +1,27 @@
 from abc import ABC, abstractmethod
 
 
-class Shape(ABC):  # The parent class Shape
+class Shape(ABC):
+    def __init__(self, x: float = 0, y: float = 0):
+        self._x = x
+        self._y = y
 
-    def __init__(self, x: float = 0, y: float = 0):  # Initalizing coordinates x and y
-        self.x = x
-        self.y = y
-
-    @property  # getter for x
+    @property
     def x(self):
         return self._x
 
-    @x.setter  # setter for x with typecheck
+    @x.setter
     def x(self, value):
         if not isinstance(value, (int, float)):
             raise TypeError("'x' must be a number, (int or float)")
         else:
-            self._x = value  # If the check passes, save the value.
+            self._x = value
 
-    @property  # getter for y
+    @property
     def y(self):
-
         return self._y
 
-    @y.setter  # setter for y with typecheck
+    @y.setter
     def y(self, value):
         if not isinstance(value, (int, float)):
             raise TypeError("'y' must be a number, (int or float)")
@@ -33,14 +31,13 @@ class Shape(ABC):  # The parent class Shape
     @property
     @abstractmethod
     def area(self):
+        """The abstract property for the area of the shape."""
         pass
-
-    # We don't know how to calculate the area or perimeter of a 'Shape',
-    # so we leave it empty with 'pass' as a placeholder.
 
     @property
     @abstractmethod
     def perimeter(self):
+        """The abstract property for the perimeter of the shape."""
         pass
 
     def __eq__(self, other):
@@ -48,42 +45,36 @@ class Shape(ABC):  # The parent class Shape
             return False
         return self.area == other.area and self.perimeter == other.perimeter
 
-    def __lt__(self, other):  # Less than
+    def __lt__(self, other):
         if not isinstance(other, Shape):
-            return NotImplemented  # https://docs.python.org/3/reference/datamodel.html
+            return NotImplemented  # Allows Python to try other > self
         return self.area < other.area
 
-    def __le__(self, other):  # Less than or equal to
+    def __le__(self, other):
         if not isinstance(other, Shape):
             return NotImplemented
         return self.area <= other.area
 
-    def __gt__(self, other):  # Greater than
+    def __gt__(self, other):
         if not isinstance(other, Shape):
             return NotImplemented
         return self.area > other.area
 
-    def __ge__(self, other):  # Greater or equal to
+    def __ge__(self, other):
         if not isinstance(other, Shape):
             return NotImplemented
         return self.area >= other.area
 
-    # I got help and inspiration for the overloading comparison operators from:
-    # https://docs.python.org/3/reference/datamodel.html#special-method-names
-
-    # self.__class__.__name__ is a clever way to get the *actual* class name,
-    # instead of just "Shape". Used by developers review the code, debug.
-    # https://www.geeksforgeeks.org/python/python-program-to-get-the-class-name-of-an-instance/
     def __repr__(self):
-        return f"{self.__class__.__name__}, (x={self.x}, y={self.y})"
+        return f"{self.__class__.__name__}(x={self.x}, y={self.y})"
 
-    def __str__(self):  # clean representation for viewers
+    def __str__(self):
         return f"Shape at position ({self.x}, {self.y})"
 
-    def translate(self, dx, dy):  # a method to move the shape around.
-        # check if the values are numeric before moving
+    def translate(self, dx, dy):
+        """Moves the shape by dx and dy."""
         if not isinstance(dx, (int, float)) or not isinstance(dy, (int, float)):
             raise TypeError("Translate values must be numbers (int or float)")
-        # if numeric add to x an y.
+
         self.x += dx
         self.y += dy
