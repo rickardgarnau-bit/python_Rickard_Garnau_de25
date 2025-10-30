@@ -60,14 +60,6 @@ class Rectangle(Shape):
         # The more readable string used when you run print.
         return f"The area of the rectangle is: {self.area}. The perimeter of the rectangle is: {self.perimeter}"
 
-    def find_center(self):
-        # A method to find the center point of the rectangle
-        # The center = start (x, y) + half the width/height
-        # This method comes from https://greenteapress.com/thinkpython/html/thinkpython016.html part 15.4
-        center_x = self.x + self._width / 2.0
-        center_y = self.y + self._height / 2.0
-        return (center_x, center_y)  # Returns the center as a tuple, e.g., (10, 15)
-
 
 # This test code below only runs when we execute this file directly (e.g., by typing "python rectangle.py" in the terminal)
 

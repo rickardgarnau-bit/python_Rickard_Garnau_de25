@@ -20,6 +20,7 @@ class Shape(ABC):  # The parent class Shape
 
     @property  # getter for y
     def y(self):
+
         return self._y
 
     @y.setter  # setter for y with typecheck
@@ -42,10 +43,10 @@ class Shape(ABC):  # The parent class Shape
     def perimeter(self):
         pass
 
-    def __eq__(self, other):  # Compares area
+    def __eq__(self, other):
         if not isinstance(other, Shape):
             return False
-        return self.area == other.area
+        return self.area == other.area and self.perimeter == other.perimeter
 
     def __lt__(self, other):  # Less than
         if not isinstance(other, Shape):
