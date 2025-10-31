@@ -12,14 +12,14 @@ class Circle(Shape):
         radius (float): The radius of the circle.
     """
 
-    def __init__(self, x=0, y=0, radius=1):
+    def __init__(self, x: float = 0, y: float = 0, radius: float = 1):
         """Initializes a new Circle instance."""
         super().__init__(x, y)
         self.radius = radius
 
     @property
     def radius(self) -> float:
-        """Gets or the radius of the circle."""
+        """Gets the radius of the circle."""
         return self._radius
 
     @radius.setter
@@ -39,6 +39,7 @@ class Circle(Shape):
     def perimeter(self) -> float:
         return 2 * math.pi * self._radius
 
+    @property
     def is_unit_circle(self) -> bool:
         return (
             math.isclose(self.radius, 1)
@@ -46,7 +47,13 @@ class Circle(Shape):
             and math.isclose(self.y, 0)
         )
 
-    """ source from https://www.w3schools.com/python/ref_math_isclose.asp and formatting from 'LLM' """
+    """
+    Checks if the circle is a unit circle.
+    A unit circle has radius 1 and center at (0, 0).
+    
+    Uses math.isclose() for safe float comparison.
+    Source: https://www.w3schools.com/python/ref_math_isclose.asp
+    """
 
     def __repr__(self) -> str:
         return f"Circle(x={self.x}, y={self.y}, radius={self.radius})"
@@ -59,9 +66,16 @@ class Circle(Shape):
 
 
 if __name__ == "__main__":
-
     c = Circle(radius=5)
 
     print(f"Radius: {c.radius}")
     print(f"Area: {c.area:.2f}")
     print(f"Perimeter: {c.perimeter:.2f}")
+
+    print(f"\nOld position of Circle: ({c.x}, {c.y})")
+    c.translate(10, -2)
+    print(f"New position of Circle: ({c.x}, {c.y})")
+
+    # Test unit circle
+    unit_circle = Circle(x=0, y=0, radius=1)
+    print(f"\nIs unit_circle a unit circle? {unit_circle.is_unit_circle}")
