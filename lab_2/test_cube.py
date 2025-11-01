@@ -1,5 +1,6 @@
 from pytest import raises
 from cube import Cube
+import math
 
 
 # Test that a cube can be initialized with a valid side
@@ -50,28 +51,26 @@ def test_set_side_invalid_type():
 # Test that float sides work correctly and calculations are accurate
 def test_float_side():
     cube = Cube(side=2.5)
-    # Volume calculation: side^3
-    assert cube.volume() == 2.5**3
-    # Surface area calculation: 6 * side^2
-    assert cube.surface_area() == 6 * 2.5**2
+    assert math.isclose(cube.volume, 2.5**3)
+    assert math.isclose(cube.surface_area, 6 * 2.5**2)
 
 
 # Test volume method directly
 def test_volume_method():
     cube = Cube(side=3)
-    assert cube.volume() == 27  # 3^3
+    assert math.isclose(cube.volume, 27)
 
 
 # Test surface_area method directly
 def test_surface_area_method():
     cube = Cube(side=2)
-    assert cube.surface_area() == 24  # 6*2^2
+    assert math.isclose(cube.surface_area, 24)
 
 
-# Test perimeter (total edge length) method
+# Test perimeter method
 def test_perimeter_method():
     cube = Cube(side=1.5)
-    assert cube.perimeter() == 18  # 12*1.5
+    assert math.isclose(cube.perimeter, 18)
 
 
 """ sources: http://pythonfiddle.com/python-program-to-write-a-cube-class/

@@ -46,3 +46,31 @@ def test_set_radius_invalid_type():
     sphere = Sphere(radius=4)
     with raises(TypeError):
         sphere.radius = "a"
+
+
+def test_float_radius():
+    sphere = Sphere(radius=5.5)
+    assert math.isclose(sphere.volume, (4 / 3) * math.pi * 5.5**3)
+    assert math.isclose(sphere.surface_area, 4 * math.pi * 5.5**2)
+
+
+# Test volume method directly
+def test_volume_method():
+    sphere = Sphere(radius=3)
+    assert math.isclose(sphere.volume, (4 / 3) * math.pi * 27)
+
+
+# Test surface_area method directly
+def test_surface_area_method():
+    sphere = Sphere(radius=2)
+    assert math.isclose(sphere.surface_area, 4 * math.pi * 4)
+
+
+# Test circumference method
+def test_circumference_method():
+    sphere = Sphere(radius=1.5)
+    assert math.isclose(sphere.circumference, 2 * math.pi * 1.5)
+
+
+""" sources: https://www.w3resource.com/python-exercises/math/python-math-exercise-6.php
+and cube.py as a template"""

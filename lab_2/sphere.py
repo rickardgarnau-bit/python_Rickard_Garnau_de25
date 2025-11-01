@@ -26,3 +26,8 @@ class Sphere:
     @property
     def volume(self):
         return (4 / 3) * math.pi * (self.radius**3)
+
+    @property
+    def circumference(self):
+        """Calculates the circumference of the great circle."""
+        return 2 * math.pi * self.radius
