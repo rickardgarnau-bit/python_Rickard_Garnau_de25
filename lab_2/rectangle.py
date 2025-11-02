@@ -1,5 +1,7 @@
 from shape import Shape
 import math
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
 
 class Rectangle(Shape):
@@ -93,3 +95,6 @@ if __name__ == "__main__":
     print(f"New position of r: ({r.x}, {r.y})")
     r.translate(-3, 0)
     print(f"New position of r: ({r.x}, {r.y})")
+
+circle1 = plt.Circle((0, 0), 0.2, color="r")
+plt.gca().add_patch(circle1)
