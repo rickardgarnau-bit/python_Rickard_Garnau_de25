@@ -1,9 +1,3 @@
-Absolut\! Här är ett försök att skriva om din README så att den låter mer som en personlig sammanfattning av ett projekt och mindre som en formell, AI-genererad rapport.
-
-Jag har behållit all viktig information men ändrat tonen, språket och strukturen.
-
------
-
 # Lab 2 - Geometri-klasser i Python
 
 Det här projektet är en uppsättning klasser för att hantera geometriska former i Python. Det började med 2D-former (`Circle`, `Rectangle`) som bygger på en abstrakt `Shape`-klass. Senare utökades det med 3D-former (`Cube`, `Sphere`) som fristående klasser.
