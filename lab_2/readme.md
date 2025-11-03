@@ -88,6 +88,15 @@ lab_2/
 └── Uml_lab2.png       # UML-diagram (endast 2D)
 ```
 
+## Källor
+https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
+https://medium.com/%40edmundlhs1104/python-oop-geometric-shapes-program-94ce4163fdbe
+https://docs.python.org/3/reference/datamodel.html
+https://github.com/AllenDowney/ThinkPython2/tree/master/code
+https://www.geeksforgeeks.org/python/python-program-to-get-the-class-name-of-an-instance/
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+https://github.com/AIgineerAB/python_course
+
 ## Student
 
 Rickard Garnau
