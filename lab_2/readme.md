@@ -1,164 +1,92 @@
-# Lab 2 - Geometry OOP
+Absolut\! Här är ett försök att skriva om din README så att den låter mer som en personlig sammanfattning av ett projekt och mindre som en formell, AI-genererad rapport.
 
-A Python project implementing geometric shapes using Object-Oriented Programming principles with inheritance and polymorphism.
+Jag har behållit all viktig information men ändrat tonen, språket och strukturen.
 
-## Project Overview
+-----
 
-This project creates a hierarchy of geometric shapes with the following features:
-- Abstract base class `Shape` with common functionality
-- `Circle` and `Rectangle` classes inheriting from `Shape`
-- Properties for area and perimeter calculations
-- Operator overloading for comparisons
-- Translation methods for moving shapes
-- Error handling and validation
+# Lab 2 - Geometri-klasser i Python
 
-## UML Diagram
+Det här projektet är en uppsättning klasser för att hantera geometriska former i Python. Det började med 2D-former (`Circle`, `Rectangle`) som bygger på en abstrakt `Shape`-klass. Senare utökades det med 3D-former (`Cube`, `Sphere`) som fristående klasser.
 
-![UML Class Diagram](https://github.com/rickardgarnau-bit/python_Rickard_Garnau_de25/blob/main/lab_2/Uml_lab2.png)
+Projektet innehåller också enhetstester med `pytest` och en `Shape2DPlotter`-klass som använder Matplotlib för att rita upp 2D-formerna.
 
-*The UML diagram shows the class hierarchy with Shape as the abstract parent class and Circle and Rectangle as child classes.*
+## UML Diagram (2D-hierarkin)
 
-## Class Structure
+*(Notera: UML-diagrammet visar bara 2D-klasserna. 3D-klasserna och plottern är medvetet separerade från denna arvshierarki.)*
 
-### Shape (Abstract Base Class)
-- **Attributes**: `x`, `y` (position coordinates)
-- **Abstract Properties**: `area`, `perimeter`
-- **Methods**: 
-  - `translate(dx, dy)` - moves the shape
-  - Comparison operators (`==`, `<`, `>`, `<=`, `>=`)
-  - `__repr__()` and `__str__()` for string representation
+## Klasserna
 
-### Rectangle
-- **Additional Attributes**: `width`, `height`
-- **Properties**: 
-  - `area` - calculates width × height
-  - `perimeter` - calculates 2(width + height)
-  - `is_square` - checks if width equals height
-- **Validation**: Ensures width and height are non-negative numbers
+  * **`Shape` (shape.py):** En abstrakt basklass (ABC). Den definierar vad alla 2D-former måste ha: en position (`x`, `y`), en `translate`-metod och abstrakta properties för `area` och `perimeter`. Den hanterar också all jämförelselogik (som `<`, `>`, `==`).
+  * **`Rectangle` (rectangle.py):** Ärver från `Shape`. Lägger till `width` och `height`. Beräknar `area`, `perimeter` och har en extra property `is_square`.
+  * **`Circle` (circle.py):** Ärver från `Shape`. Lägger till `radius`. Beräknar `area`, `perimeter` och har en extra property `is_unit_circle`.
+  * **`Cube` (cube.py):** En fristående klass. Har en `side` och beräknar `volume`, `surface_area` och total kantlängd (`perimeter`).
+  * **`Sphere` (sphere.py):** En fristående klass. Har en `radius` och beräknar `volume`, `surface_area` och `circumference` (omkretsen av storcirkeln).
+  * **`Shape2DPlotter` (shape2dplotter.py):** En fristående klass som använder Matplotlib. Den har en `add_shape()`-metod för att lägga till 2D-former och en `show_plot()`-metod för att visa resultatet.
 
-### Circle
-- **Additional Attributes**: `radius`
-- **Properties**:
-  - `area` - calculates π × radius²
-  - `perimeter` - calculates 2π × radius
-  - `is_unit_circle` - checks if radius=1 and center at (0,0)
-- **Validation**: Ensures radius is a non-negative number
+## Designval & Struktur
 
-### Running the code
-```python
-from circle import Circle
-from rectangle import Rectangle
+Ett viktigt beslut var att **separera 2D- och 3D-formerna**. `Cube` och `Sphere` ärver inte från `Shape` eftersom de inte är "former" på samma sätt. En kub har `volume`, inte `perimeter` på samma sätt som en 2D-form. Att tvinga in dem i samma hierarki hade blivit stökigt.
 
-# Create shapes
-circle1 = Circle(x=0, y=0, radius=1)  # unit circle
-rectangle = Rectangle(x=0, y=0, width=5, height=3)
+Jag **separerade också rit-logiken**. Mina form-klasser (`Circle`, `Rectangle`) innehåller *ingen* Matplotlib-kod. De vet bara hur man är en form. En separat `Shape2DPlotter`-klass sköter allt som har med ritande att göra. Det gör koden mycket renare och enklare att underhålla.
 
-# Compare shapes
-print(circle1 == rectangle)  # False
+All validering (t.ex. att en radie inte kan vara negativ) görs i **property setters** (`@property.setter`). Det gör att ett objekt aldrig kan ha ett ogiltigt värde. Den gemensamma valideringskoden finns i `utils.py` för att undvika att upprepa kod.
 
-# Move shapes
-circle1.translate(5, 3)
-print(f"New position: ({circle1.x}, {circle1.y})")
+## Tester
 
-# Check properties
-print(f"Circle area: {circle1.area:.2f}")
-print(f"Is square? {rectangle.is_square}")
-```
+Projektet använder `pytest` för enhetstester. Testerna kollar att:
 
-## Code Examples
+  * Objekt skapas korrekt.
+  * Beräkningar för `area`, `volume`, etc. stämmer.
+  * Felhantering fungerar (t.ex. att `ValueError` kastar som det ska för negativa tal).
+  * Flyttalsjämförelser görs säkert med `math.isclose`.
 
-### Creating and comparing shapes
-```python
-circle1 = Circle(radius=5)
-circle2 = Circle(radius=3)
+Du kan köra testerna från rotmappen med kommandot:
 
-print(circle1 > circle2)  # True (larger area)
-print(circle1.area)       # 78.54
-```
-
-### Error handling
-```python
-try:
-    circle = Circle(radius=-5)  # ValueError
-except ValueError as e:
-    print(e)  # "The radius cannot be negative"
-
-try:
-    rectangle = Rectangle(width="5", height=3)  # TypeError
-except TypeError as e:
-    print(e)  # "The width has to be a number"
-```
-
-## Design Decisions
-
-### Inheritance
-I chose to use an abstract base class (`Shape`) to enforce a common interface for all geometric shapes. This ensures that all shapes must implement `area` and `perimeter` properties.
-
-### Comparison Logic
-Shapes are compared based on both area and perimeter:
-- Two shapes are equal (`==`) only if both area and perimeter match
-- For `<` and `>`, area is compared first, perimeter is used as a tiebreaker
-- This ensures consistent and logical sorting behavior
-
-### Validation Strategy
-All numeric inputs are validated using property setters to ensure:
-- Type checking (must be int or float)
-- Value checking (dimensions cannot be negative)
-- This validation happens both during initialization and when modifying properties
-
-### Float Comparison
-I use `math.isclose()` for comparing floating-point numbers (e.g., in `is_square` and `is_unit_circle`) to avoid precision errors common with direct float comparisons.
-
-## Sources and References
-
-### Learning Resources
-- **Python ABC Module**: [Python Official Documentation](https://docs.python.org/3/library/abc.html)
-- **math.isclose()**: [W3Schools Reference](https://www.w3schools.com/python/ref_math_isclose.asp) - Used for safe float comparison in `is_unit_circle` and `is_square` methods
-- **Property Decorators**: [Real Python - Python Property](https://realpython.com/python-property/)
-- **Operator Overloading**: [Python Documentation](https://docs.python.org/3/reference/datamodel.html#special-method-names)
-
-### LLM Usage
-I used Claude (Anthropic's AI assistant) for:
-- **Code review and feedback** - Getting suggestions on best practices and potential improvements
-- **Debugging help** - Understanding why validation wasn't working in `__init__` method
-- **Documentation guidance** - Structuring this README and understanding docstring conventions
-- **Python conventions** - Learning about `NotImplemented` vs `False` in comparison operators
-
-All core logic and implementation was written by me. The LLM was used as a learning tool and code reviewer.
-
-## Testing
-
-Manual tests are included in each file under `if __name__ == "__main__":` blocks. Run them with:
 ```bash
-python rectangle.py
-python circle.py
+pytest
 ```
 
-Example test output:
-```
-Width: 4
-Height: 6
-Area: 24.00
-Perimeter: 20.00
-Is it a square? False
+## Köra koden
+
+Du kan köra de flesta filer direkt för att se exempel. De två mest intressanta är:
+
+**1. Köra 3D-beräkningar (t.ex. `sphere.py`):**
+
+```bash
+python sphere.py
 ```
 
-## Project Structure
 ```
-geometry-oop/
+Please enter the radius of the sphere: 5
+The volume of the sphere is: 523.59877...
+The surface area of the sphere is: 314.15926...
+```
+
+**2. Köra 2D-plottern (`shape2dplotter.py`):**
+
+```bash
+python shape2dplotter.py
+```
+
+Detta öppnar ett Matplotlib-fönster som ritar upp de former som är definierade i `if __name__ == "__main__"`-blocket i filen.
+
+## Filstruktur
+
+```
+lab_2/
 ├── README.md
-├── shape.py          # Abstract base class
-├── rectangle.py      # Rectangle implementation
-├── circle.py         # Circle implementation
-└── uml_diagram.png   # UML class diagram
+├── shape.py           # 2D Abstrakt basklass
+├── rectangle.py       # 2D Rektangel
+├── circle.py          # 2D Cirkel
+├── cube.py            # 3D Kub (Fristående)
+├── sphere.py          # 3D Sfär (Fristående)
+├── utils.py           # Delad valideringsfunktion
+├── shape2dplotter.py  # Matplotlib-visualisering
+├── test_cube.py       # Pytest-tester för Kub
+├── test_sphere.py     # Pytest-tester för Sfär
+└── Uml_lab2.png       # UML-diagram (endast 2D)
 ```
-
-## Future Improvements
-- Add 3D shapes (Cube, Sphere)
-- Implement unit tests with pytest
-- Add visualization with matplotlib
-- Create a ShapePlotter class for drawing multiple shapes
 
 ## Student
-Rickard Garnau  
-Lab 2 - Geometry OOP
+
+Rickard Garnau

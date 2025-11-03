@@ -31,3 +31,16 @@ class Sphere:
     def circumference(self):
         """Calculates the circumference of the great circle."""
         return 2 * math.pi * self.radius
+
+
+if __name__ == "__main__":
+    try:
+        r = float(input("Please enter the radius of the sphere: "))
+
+        s = Sphere(r)
+
+        print("The volume of the sphere is:", s.volume)
+        print("The surface area of the sphere is:", s.surface_area)
+
+    except (ValueError, TypeError) as e:
+        print("Error:", e)
