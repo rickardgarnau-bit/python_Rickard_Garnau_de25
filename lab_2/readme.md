@@ -12,6 +12,7 @@ Projektet innehåller också enhetstester med `pytest` och en `Shape2DPlotter`-k
 
 ## UML Diagram (2D-hierarkin)
 
+![UML Class Diagram](Uml_lab2.png)
 *(Notera: UML-diagrammet visar bara 2D-klasserna. 3D-klasserna och plottern är medvetet separerade från denna arvshierarki.)*
 
 ## Klasserna
