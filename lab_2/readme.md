@@ -1,9 +1,3 @@
-Absolut\! Här är ett försök att skriva om din README så att den låter mer som en personlig sammanfattning av ett projekt och mindre som en formell, AI-genererad rapport.
-
-Jag har behållit all viktig information men ändrat tonen, språket och strukturen.
-
------
-
 # Lab 2 - Geometri-klasser i Python
 
 Det här projektet är en uppsättning klasser för att hantera geometriska former i Python. Det började med 2D-former (`Circle`, `Rectangle`) som bygger på en abstrakt `Shape`-klass. Senare utökades det med 3D-former (`Cube`, `Sphere`) som fristående klasser.
@@ -87,6 +81,15 @@ lab_2/
 ├── test_sphere.py     # Pytest-tester för Sfär
 └── Uml_lab2.png       # UML-diagram (endast 2D)
 ```
+
+## Källor
+https://www.w3resource.com/python-exercises/oop/python-oop-exercise-4.php
+https://medium.com/%40edmundlhs1104/python-oop-geometric-shapes-program-94ce4163fdbe
+https://docs.python.org/3/reference/datamodel.html
+https://github.com/AllenDowney/ThinkPython2/tree/master/code
+https://www.geeksforgeeks.org/python/python-program-to-get-the-class-name-of-an-instance/
+https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+https://github.com/AIgineerAB/python_course
 
 ## Student
 
