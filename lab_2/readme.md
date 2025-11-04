@@ -24,8 +24,7 @@ Jag implementerade även alla bonusuppgifter:
 ## Min UML-plan
 
 Här är ritningen jag började med för 2D-klasserna. Planen var att ha `Shape` som en abstrakt förälder som `Circle` och `Rectangle` ärver ifrån. All gemensam kod (som `x`, `y` och `translate`) hamnar i `Shape`.
-
-*(OBS: UML-diagrammet visar bara grunduppgiften, inte bonusklasserna.)*
+![UML Klassdiagram](Uml_lab2.png)
 
 ## Klass-struktur
 
