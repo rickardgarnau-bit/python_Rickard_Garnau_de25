@@ -61,7 +61,6 @@ class Sphere:
             f"surface_area={self.surface_area:.2f}"
         )
 
-
 if __name__ == "__main__":
     try:
         r = float(input("Please enter the radius of the sphere: "))
